@@ -10,27 +10,26 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
-
-        player.anim.SetFloat("xInput", 1);
-        player.anim.SetFloat("yInput", 0);
-
-        player.anim.SetFloat("xInput", -1);
-        player.anim.SetFloat("yInput", 0);
 
 
-        player.anim.SetFloat("xInput", 0);
-        player.anim.SetFloat("yInput", 1);
+        // player.anim.SetFloat("xInput", 1);
+        // player.anim.SetFloat("yInput", 0);
+
+        // player.anim.SetFloat("xInput", -1);
+        // player.anim.SetFloat("yInput", 0);
 
 
-        player.anim.SetFloat("xInput", 0);
-        player.anim.SetFloat("yInput", -1);
-
-        player.anim.SetFloat("xInput", currentDirection.x);
-        player.anim.SetFloat("yInput", currentDirection.y);
+        // player.anim.SetFloat("xInput", 0);
+        // player.anim.SetFloat("yInput", 1);
 
 
+        // player.anim.SetFloat("xInput", 0);
+        // player.anim.SetFloat("yInput", -1);
 
+        // player.anim.SetFloat("xInput", currentDirection.x);
+        // player.anim.SetFloat("yInput", currentDirection.y);
+        player.anim.SetFloat("xInput", player.playerCurrentDirection.x);
+        player.anim.SetFloat("yInput", player.playerCurrentDirection.y);
     }
 
     public override void Exit()
@@ -42,17 +41,17 @@ public class PlayerIdleState : PlayerState
     {
         base.Update();
         player.SetVelocity(0, 0);
-        player.anim.SetFloat("xInput", xInput);
-        player.anim.SetFloat("yInput", yInput);
+        // player.anim.SetFloat("xInput", xInput);
+        // player.anim.SetFloat("yInput", yInput);
 
-        
+
 
 
         if (xInput != 0 || yInput != 0)
         {
             stateMachine.ChangeState(player.moveState);
         }
-        
+
     }
 
 

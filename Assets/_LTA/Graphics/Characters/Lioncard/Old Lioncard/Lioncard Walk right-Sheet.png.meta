@@ -164,12 +164,12 @@ TextureImporter:
       name: Lioncard Walk right-Sheet_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 0
         y: 0
-        width: 25
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: Lioncard Walk right-Sheet_1
       rect:
         serializedVersion: 2
-        x: 83
+        x: 68
         y: 0
-        width: 45
+        width: 68
         height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: Lioncard Walk right-Sheet_2
       rect:
         serializedVersion: 2
-        x: 158
+        x: 136
         y: 0
-        width: 24
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: Lioncard Walk right-Sheet_3
       rect:
         serializedVersion: 2
-        x: 223
+        x: 204
         y: 0
-        width: 41
+        width: 68
         height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

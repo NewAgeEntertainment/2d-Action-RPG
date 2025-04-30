@@ -21,33 +21,20 @@ public class PlayerMoveState : PlayerState
     public override void Update()
     {
         base.Update();
-        
+
 
         player.SetVelocity(xInput, yInput);
-        
-        player.anim.SetFloat("xInput", currentDirection.x);
-        player.anim.SetFloat("yInput", currentDirection.y);
-        
 
-
-
+        player.anim.SetFloat("xInput", xInput);
+        player.anim.SetFloat("yInput", yInput);
 
         if (xInput == 0 && yInput == 0)
         {
-            player.anim.SetFloat("xInput", xInput);
-            player.anim.SetFloat("yInput", yInput);
             stateMachine.ChangeState(player.idleState);
         }
-
-        
-
-
-
-
-
-
-
-
-
+        else
+        {
+            player.playerCurrentDirection = new Vector2(xInput, yInput);
+        }
     }
 }

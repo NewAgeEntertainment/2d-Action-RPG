@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
+  playerCurrentDirection: {x: 0, y: 0}
 --- !u!50 &2036474639
 Rigidbody2D:
   serializedVersion: 5

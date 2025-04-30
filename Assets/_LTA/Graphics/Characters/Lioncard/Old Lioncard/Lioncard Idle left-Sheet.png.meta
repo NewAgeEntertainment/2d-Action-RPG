@@ -176,12 +176,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_0
       rect:
         serializedVersion: 2
-        x: 22
+        x: 0
         y: 0
-        width: 35
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -198,12 +198,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_1
       rect:
         serializedVersion: 2
-        x: 90
+        x: 68
         y: 0
-        width: 35
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -220,12 +220,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_2
       rect:
         serializedVersion: 2
-        x: 158
+        x: 136
         y: 0
-        width: 35
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,12 +242,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_3
       rect:
         serializedVersion: 2
-        x: 226
+        x: 204
         y: 0
-        width: 35
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -264,12 +264,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_4
       rect:
         serializedVersion: 2
-        x: 294
+        x: 272
         y: 0
-        width: 35
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -286,12 +286,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_5
       rect:
         serializedVersion: 2
-        x: 362
+        x: 340
         y: 0
-        width: 35
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -308,12 +308,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_6
       rect:
         serializedVersion: 2
-        x: 430
+        x: 408
         y: 0
-        width: 35
+        width: 68
         height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -330,12 +330,12 @@ TextureImporter:
       name: Lioncard Idle left-Sheet_7
       rect:
         serializedVersion: 2
-        x: 498
+        x: 476
         y: 0
-        width: 35
+        width: 68
         height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
