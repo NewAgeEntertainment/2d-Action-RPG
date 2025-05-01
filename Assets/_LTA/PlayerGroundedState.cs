@@ -20,9 +20,6 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            stateMachine.ChangeState(player.dashState);
-        }
+
     }
 }

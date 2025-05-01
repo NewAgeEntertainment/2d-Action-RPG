@@ -11,8 +11,8 @@ public class PlayerDashState : PlayerState
         base.Enter();
         stateTimer = player.dashDuration;
     
-        player.anim.SetFloat("xInput", xInput);
-        player.anim.SetFloat("yInput", yInput);
+        //player.anim.SetFloat("xInput", xInput);
+        //player.anim.SetFloat("yInput", yInput);
     
     }
 
@@ -28,12 +28,11 @@ public class PlayerDashState : PlayerState
     {
         base.Update();
 
-        Debug.Log("Dashing");
+
 
         player.SetVelocity(player.dashSpeed * player.playerCurrentDirection.x, player.dashSpeed * player.playerCurrentDirection.y);
 
-        player.anim.SetFloat("xInput", player.playerCurrentDirection.x);
-        player.anim.SetFloat("yInput", player.playerCurrentDirection.y);
+        
 
 
         if (stateTimer < 0)

@@ -57,43 +57,41 @@ public class Player : MonoBehaviour
     {
         stateMachine.currentState.Update();
 
-        //CheckForDashInput();
+        CheckForDashInput();
     }
 
-    //private void CheckForDashInput()
-    //{
-    //    dashUsageTimer -= Time.deltaTime; // Decrease the dash usage timer by the time since the last frame  
+    private void CheckForDashInput()
+    {
+        dashUsageTimer -= Time.deltaTime; // Decrease the dash usage timer by the time since the last frame  
 
-    //    if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0) // Check if the left shift key is pressed and the dash cooldown is over  
-    //    {
-    //        dashUsageTimer = dashCoolDown; // Reset the dash usage timer to the cooldown value  
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0) // Check if the left shift key is pressed and the dash cooldown is over  
+        {
+            dashUsageTimer = dashCoolDown; // Reset the dash usage timer to the cooldown value  
 
-    //        dashDirx = Input.GetAxisRaw("Horizontal"); // Get the horizontal input value for dash direction  
-    //        dashDiry = Input.GetAxisRaw("Vertical"); // Get the vertical input value for dash direction  
+            dashDirx = Input.GetAxisRaw("Horizontal"); // Get the horizontal input value for dash direction  
+            dashDiry = Input.GetAxisRaw("Vertical"); // Get the vertical input value for dash direction  
 
-    //        if (dashDirx == 0 && dashDiry == 0) // If no input is detected, set the dash direction to the facing direction  
-    //        {
-    //            if (dashDirx == 0)
-    //            {
-    //                dashDirx = playerCurrentDirection.x; // Set the dash direction to the player's current direction  
-    //            }
-    //            else if (dashDiry == 0)
-    //            {
-    //                dashDiry = playerCurrentDirection.y; // Set the dash direction to the player's current direction  
-    //            }
-    //            else
-    //            {
-    //                dashDirx = playerCurrentDirection.x;
-    //                dashDiry = playerCurrentDirection.y;
-    //            } 
-    //        }
+            if (dashDirx == 0 && dashDiry == 0) // If no input is detected, set the dash direction to the facing direction  
+            {
+                if (dashDirx == 0)
+                {
+                    dashDirx = playerCurrentDirection.x; // Set the dash direction to the player's current direction  
+                }
+                else if (dashDiry == 0)
+                {
+                    dashDiry = playerCurrentDirection.y; // Set the dash direction to the player's current direction  
+                }
+                else
+                {
+                    dashDirx = playerCurrentDirection.x;
+                    dashDiry = playerCurrentDirection.y;
+                }
+            }
 
-    //        stateMachine.ChangeState(dashState); // Change to the dash state when the left shift key is pressed  
-            
+            stateMachine.ChangeState(dashState); // Change to the dash state when the left shift key is pressed  
+        }
+    }
 
-        
-    //    }
-    //}
 
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {

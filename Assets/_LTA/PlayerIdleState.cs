@@ -41,10 +41,7 @@ public class PlayerIdleState : PlayerGroundedState
             stateMachine.ChangeState(player.runState);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            stateMachine.ChangeState(player.dashState);
-        }
+        
 
 
 
