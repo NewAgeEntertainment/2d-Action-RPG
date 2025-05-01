@@ -30,7 +30,7 @@ public class PlayerMoveState : PlayerState
 
         if (xInput == 0 && yInput == 0)
         {
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(stateMachine.idleState);
         }
         else
         {
@@ -39,7 +39,7 @@ public class PlayerMoveState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            stateMachine.ChangeState(player.runState);
+            stateMachine.ChangeState(stateMachine.runState);
         }
     }
 }

@@ -9,8 +9,8 @@ public class PlayerRunState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
-        
+
+
     }
 
     public override void Exit()
@@ -22,29 +22,29 @@ public class PlayerRunState : PlayerState
     {
         base.Update();
 
-        
-        
-       player.SetVelocity(xInput * player.runSpeed, yInput * player.runSpeed);
-        
-       
-        
-        
-            player.anim.SetFloat("xInput", xInput);
-            player.anim.SetFloat("yInput", yInput);
-            
-        
+
+
+        player.SetVelocity(xInput * player.runSpeed, yInput * player.runSpeed);
+
+
+
+
+        player.anim.SetFloat("xInput", xInput);
+        player.anim.SetFloat("yInput", yInput);
+
+
 
         if (Input.GetKeyUp(KeyCode.C))
         {
-            stateMachine.ChangeState(player.moveState);
+            stateMachine.ChangeState(stateMachine.moveState);
         }
 
 
         if (xInput == 0 && yInput == 0)
         {
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(stateMachine.idleState);
         }
-        
+
 
 
 

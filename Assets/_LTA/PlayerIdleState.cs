@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerIdleState : PlayerGroundedState
 {
@@ -26,24 +25,14 @@ public class PlayerIdleState : PlayerGroundedState
         base.Update();
         player.SetVelocity(0, 0);
 
-
-
-
-        if (xInput != 0 || yInput != 0 && !Input.GetKeyDown(KeyCode.C))    
+        if (xInput != 0 || yInput != 0 && !Input.GetKeyDown(KeyCode.C))
         {
-            stateMachine.ChangeState(player.moveState);
+            stateMachine.ChangeState(stateMachine.moveState);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            stateMachine.ChangeState(player.runState);
+            stateMachine.ChangeState(stateMachine.runState);
         }
-
-        
-
-
-
     }
-
-
 }
