@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerIdleState : PlayerState
+public class PlayerIdleState : PlayerGroundedState
 {
     public PlayerIdleState(Player _player, PlayerStateMachine _stateMachine, string _animeBoolName) : base(_player, _stateMachine, _animeBoolName)
     {
@@ -11,23 +11,7 @@ public class PlayerIdleState : PlayerState
     {
         base.Enter();
 
-
-        // player.anim.SetFloat("xInput", 1);
-        // player.anim.SetFloat("yInput", 0);
-
-        // player.anim.SetFloat("xInput", -1);
-        // player.anim.SetFloat("yInput", 0);
-
-
-        // player.anim.SetFloat("xInput", 0);
-        // player.anim.SetFloat("yInput", 1);
-
-
-        // player.anim.SetFloat("xInput", 0);
-        // player.anim.SetFloat("yInput", -1);
-
-        // player.anim.SetFloat("xInput", currentDirection.x);
-        // player.anim.SetFloat("yInput", currentDirection.y);
+        rb.linearVelocity = new Vector2(0, 0);
         player.anim.SetFloat("xInput", player.playerCurrentDirection.x);
         player.anim.SetFloat("yInput", player.playerCurrentDirection.y);
     }
@@ -47,10 +31,22 @@ public class PlayerIdleState : PlayerState
 
 
 
-        if (xInput != 0 || yInput != 0)
+        if (xInput != 0 || yInput != 0 && !Input.GetKeyDown(KeyCode.C))    
         {
             stateMachine.ChangeState(player.moveState);
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            stateMachine.ChangeState(player.runState);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            stateMachine.ChangeState(player.dashState);
+        }
+
+
 
     }
 

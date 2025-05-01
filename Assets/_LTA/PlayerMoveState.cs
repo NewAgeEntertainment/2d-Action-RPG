@@ -23,7 +23,7 @@ public class PlayerMoveState : PlayerState
         base.Update();
 
 
-        player.SetVelocity(xInput, yInput);
+        player.SetVelocity(xInput * player.moveSpeed, yInput * player.moveSpeed);
 
         player.anim.SetFloat("xInput", xInput);
         player.anim.SetFloat("yInput", yInput);
@@ -35,6 +35,11 @@ public class PlayerMoveState : PlayerState
         else
         {
             player.playerCurrentDirection = new Vector2(xInput, yInput);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            stateMachine.ChangeState(player.runState);
         }
     }
 }
