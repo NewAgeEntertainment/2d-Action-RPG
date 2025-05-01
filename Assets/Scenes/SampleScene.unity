@@ -386,8 +386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0099fb8af2cbb6b4dba31c8528ae97b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.94
+  moveSpeed: 10
   runSpeed: 3.21
+  dashCoolDown: 1
+  dashSpeed: 15
+  dashDuration: 0.5
   playerCurrentDirection: {x: 0, y: 0}
 --- !u!50 &2036474639
 Rigidbody2D:
@@ -459,7 +462,7 @@ Animator:
   m_GameObject: {fileID: 2056656492}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b551030fee181e4458f7670072254f77, type: 2}
+  m_Controller: {fileID: 9100000, guid: f7abe5894985569409408c7c0af5a76a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

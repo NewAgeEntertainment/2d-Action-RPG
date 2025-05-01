@@ -11,8 +11,7 @@ public class PlayerDashState : PlayerState
         base.Enter();
         stateTimer = player.dashDuration;
     
-        //player.anim.SetFloat("xInput", xInput);
-        //player.anim.SetFloat("yInput", yInput);
+        
     
     }
 

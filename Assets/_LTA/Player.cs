@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     #endregion
 
     public Vector2 playerCurrentDirection;
-    // public Vector2Int currentDirection { get; private set; }
+    
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
@@ -76,10 +76,13 @@ public class Player : MonoBehaviour
                 if (dashDirx == 0)
                 {
                     dashDirx = playerCurrentDirection.x; // Set the dash direction to the player's current direction  
+                    anim.SetFloat("xInput", playerCurrentDirection.x);
+
                 }
                 else if (dashDiry == 0)
                 {
                     dashDiry = playerCurrentDirection.y; // Set the dash direction to the player's current direction  
+                    anim.SetFloat("xInput", playerCurrentDirection.x);
                 }
                 else
                 {
@@ -91,7 +94,6 @@ public class Player : MonoBehaviour
             stateMachine.ChangeState(dashState); // Change to the dash state when the left shift key is pressed  
         }
     }
-
 
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
