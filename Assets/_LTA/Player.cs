@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     public PlayerMoveState moveState { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerRunState runState { get; private set; }
+
+    public PlayerPrimaryAttack primaryAttack { get; private set; }
     #endregion
 
     public void Awake()
@@ -41,6 +43,8 @@ public class Player : MonoBehaviour
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         runState = new PlayerRunState(this, stateMachine, "Run");
+
+        primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
 
 
@@ -60,6 +64,8 @@ public class Player : MonoBehaviour
         CheckForDashInput();
     }
 
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationTrigger method of the current state in the state machine
+
     private void CheckForDashInput()
     {
         dashUsageTimer -= Time.deltaTime; // Decrease the dash usage timer by the time since the last frame  
@@ -68,28 +74,14 @@ public class Player : MonoBehaviour
         {
             dashUsageTimer = dashCoolDown; // Reset the dash usage timer to the cooldown value  
 
-            dashDirx = Input.GetAxisRaw("Horizontal"); // Get the horizontal input value for dash direction  
-            dashDiry = Input.GetAxisRaw("Vertical"); // Get the vertical input value for dash direction  
+            //dashDirx = Input.GetAxisRaw("Horizontal"); // Get the horizontal input value for dash direction  
+            //dashDiry = Input.GetAxisRaw("Vertical"); // Get the vertical input value for dash direction  
 
-            if (dashDirx == 0 && dashDiry == 0) // If no input is detected, set the dash direction to the facing direction  
-            {
-                if (dashDirx == 0)
-                {
-                    dashDirx = playerCurrentDirection.x; // Set the dash direction to the player's current direction  
-                    anim.SetFloat("xInput", playerCurrentDirection.x);
-
-                }
-                else if (dashDiry == 0)
-                {
-                    dashDiry = playerCurrentDirection.y; // Set the dash direction to the player's current direction  
-                    anim.SetFloat("xInput", playerCurrentDirection.x);
-                }
-                else
-                {
-                    dashDirx = playerCurrentDirection.x;
-                    dashDiry = playerCurrentDirection.y;
-                }
-            }
+            //if (dashDirx == 0 && dashDiry == 0) // If no input is given, set the dash direction to the current player direction  
+            //{
+            //    dashDirx = playerCurrentDirection.x;
+            //    dashDiry = playerCurrentDirection.y;
+            //}
 
             stateMachine.ChangeState(dashState); // Change to the dash state when the left shift key is pressed  
         }

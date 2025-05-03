@@ -14,6 +14,7 @@ public class PlayerState
     private string animeBoolName;
 
     protected float stateTimer;
+    protected bool triggerCalled; // Used to check if the trigger was called
 
     public PlayerState(Player _player, PlayerStateMachine _stateMachine, string _animeBoolName)
     {
@@ -26,6 +27,7 @@ public class PlayerState
     {
         player.anim.SetBool(animeBoolName, true);
         rb = player.rb;
+        triggerCalled = false; // Reset the trigger called flag
     }
 
     public virtual void Update()
@@ -39,5 +41,10 @@ public class PlayerState
     {
         
         player.anim.SetBool(animeBoolName, false);
+    }
+
+    public virtual void AnimationFinishTrigger()
+    {
+        triggerCalled = true; // Set the trigger called flag to true
     }
 }
