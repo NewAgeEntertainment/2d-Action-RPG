@@ -21,8 +21,12 @@ public class PlayerPrimaryAttack : PlayerState
         {
             comboCounter = 0; // Reset the combo counter if it exceeds 2
         }
-            player.anim.SetInteger("ComboCounter", comboCounter); // Set the combo counter in the animator
+           player.anim.SetInteger("ComboCounter", comboCounter); // Set the combo counter in the animator
         
+        player.SetVelocity(player.attackMovement[comboCounter] * player.playerCurrentDirection.x, player.attackMovement[comboCounter] * player.playerCurrentDirection.y); // Set the player's velocity based on the attack movement
+        Debug.Log(player.attackMovement[comboCounter] * player.playerCurrentDirection.y);
+
+        stateTimer = .1f; // Set the state timer to 0.1 seconds
 
         Debug.Log(comboCounter);
     }
@@ -30,6 +34,8 @@ public class PlayerPrimaryAttack : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        player.StartCoroutine("BusyFor", .15f); // Start a coroutine to make the player busy for a short duration after the attack
 
         comboCounter++; // Increment the combo counter by 1
         lastTimeAttacked = Time.time; // Reset the last attack time
@@ -40,7 +46,11 @@ public class PlayerPrimaryAttack : PlayerState
     {
         base.Update();
 
-        if(triggerCalled)
+        if (stateTimer < 0)
+            rb.linearVelocity = new Vector2(0, 0); // Stop the player's movement when the attack animation is finished
+
+
+        if (triggerCalled)
             stateMachine.ChangeState(player.idleState);
         
         

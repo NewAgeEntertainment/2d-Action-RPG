@@ -29,7 +29,7 @@ public class PlayerIdleState : PlayerGroundedState
 
 
 
-        if (xInput != 0 || yInput != 0 && !Input.GetKeyDown(KeyCode.C))    
+        if (xInput != 0 || yInput != 0 && !player.isBusy) 
         {
             stateMachine.ChangeState(player.moveState);
         }
