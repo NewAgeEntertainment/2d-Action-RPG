@@ -83,7 +83,11 @@ public class Player : MonoBehaviour
         isBusy = false; // Set the isBusy flag to false
     }
 
-    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationTrigger method of the current state in the state machine
+    public void AnimationTrigger()
+    {
+        stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationTrigger method of the current state in the state machine
+    } 
+
 
     private void CheckForDashInput()
     {
@@ -93,21 +97,19 @@ public class Player : MonoBehaviour
         {
             dashUsageTimer = dashCoolDown; // Reset the dash usage timer to the cooldown value  
 
-            //dashDirx = Input.GetAxisRaw("Horizontal"); // Get the horizontal input value for dash direction  
-            //dashDiry = Input.GetAxisRaw("Vertical"); // Get the vertical input value for dash direction  
-
-            //if (dashDirx == 0 && dashDiry == 0) // If no input is given, set the dash direction to the current player direction  
-            //{
-            //    dashDirx = playerCurrentDirection.x;
-            //    dashDiry = playerCurrentDirection.y;
-            //}
-
+      
             stateMachine.ChangeState(dashState); // Change to the dash state when the left shift key is pressed  
         }
     }
 
+    #region Velocity
+    public void ZeroVelocity()
+    {
+        rb.linearVelocity = Vector2.zero; // Set the player's velocity to zero
+    }
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         rb.linearVelocity = new Vector2(_xVelocity, _yVelocity);
     }
+    #endregion
 }

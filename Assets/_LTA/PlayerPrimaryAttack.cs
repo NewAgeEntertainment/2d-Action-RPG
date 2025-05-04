@@ -21,21 +21,35 @@ public class PlayerPrimaryAttack : PlayerState
         {
             comboCounter = 0; // Reset the combo counter if it exceeds 2
         }
-           player.anim.SetInteger("ComboCounter", comboCounter); // Set the combo counter in the animator
+
+        #region Choose attack direction
+
+        float attackDirx = player.playerCurrentDirection.x; // Get the attack direction based on the player's current direction
+        float attackDiry = player.playerCurrentDirection.y;
+
+
+        if (xInput != 0)
+            attackDirx = xInput; // If there is input in the x direction, use that for the attack direction
+        if (yInput != 0)
+            attackDiry = yInput; // If there is input in the y direction, use that for the attack direction
+        #endregion
+
+        player.anim.SetInteger("ComboCounter", comboCounter); // Set the combo counter in the animator
+
         
-        player.SetVelocity(player.attackMovement[comboCounter] * player.playerCurrentDirection.x, player.attackMovement[comboCounter] * player.playerCurrentDirection.y); // Set the player's velocity based on the attack movement
-        Debug.Log(player.attackMovement[comboCounter] * player.playerCurrentDirection.y);
+        player.SetVelocity(player.attackMovement[comboCounter] * attackDirx, player.attackMovement[comboCounter] * attackDiry); // Set the player's velocity based on the attack movement
+        
 
         stateTimer = .1f; // Set the state timer to 0.1 seconds
 
-        Debug.Log(comboCounter);
+
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        player.StartCoroutine("BusyFor", .15f); // Start a coroutine to make the player busy for a short duration after the attack
+        player.StartCoroutine("BusyFor", .10f); // Start a coroutine to make the player busy for a short duration after the attack
 
         comboCounter++; // Increment the combo counter by 1
         lastTimeAttacked = Time.time; // Reset the last attack time
@@ -45,14 +59,19 @@ public class PlayerPrimaryAttack : PlayerState
     public override void Update()
     {
         base.Update();
+        //player.anim.SetFloat("xInput", attackDirx); // Set the x input in the animator
+        //player.anim.SetFloat("yInput", attackDiry); // Set the y input in the animator
 
         if (stateTimer < 0)
-            rb.linearVelocity = new Vector2(0, 0); // Stop the player's movement when the attack animation is finished
-
+            player.ZeroVelocity(); // Stop the player's movement when the state timer is less than 0
 
         if (triggerCalled)
             stateMachine.ChangeState(player.idleState);
         
         
     }
+
+
+    //example of how to use a variable to mean something by adding = to it.
+    // Vector2 attackMovement = new Vector2(player.attackMovement[comboCounter], player.attackMovement[comboCounter]); // Get the attack movement vector based on the combo counter
 }

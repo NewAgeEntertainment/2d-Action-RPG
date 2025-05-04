@@ -28,6 +28,7 @@ public class PlayerMoveState : PlayerGroundedState
         player.anim.SetFloat("xInput", xInput);
         player.anim.SetFloat("yInput", yInput);
 
+        
         if (xInput == 0 && yInput == 0)
         {
             stateMachine.ChangeState(player.idleState);

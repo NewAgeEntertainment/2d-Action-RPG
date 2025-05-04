@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
 
-        rb.linearVelocity = new Vector2(0, 0);
+        player.ZeroVelocity();
         player.anim.SetFloat("xInput", player.playerCurrentDirection.x);
         player.anim.SetFloat("yInput", player.playerCurrentDirection.y);
     }
@@ -19,17 +19,22 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
+        
     }
 
     public override void Update()
     {
         base.Update();
-        player.SetVelocity(0, 0);
 
 
 
 
-        if (xInput != 0 || yInput != 0 && !player.isBusy) 
+        if (xInput != 0 && !player.isBusy) 
+        {
+            stateMachine.ChangeState(player.moveState);
+        }
+
+        if (yInput != 0 && !player.isBusy)
         {
             stateMachine.ChangeState(player.moveState);
         }
