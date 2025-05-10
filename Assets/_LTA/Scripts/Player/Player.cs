@@ -5,7 +5,7 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
 
     [Header("Attack details")]
@@ -26,10 +26,7 @@ public class Player : MonoBehaviour
     public float dashDirx {  get; private set; }
     public float dashDiry { get; private set; }
 
-    #region Components    
-    public Animator anim { get; private set; }
-    public Rigidbody2D rb { get; private set; }
-    #endregion
+    
 
     public Vector2 playerCurrentDirection;
     
@@ -43,8 +40,9 @@ public class Player : MonoBehaviour
     public PlayerPrimaryAttack primaryAttack { get; private set; }
     #endregion
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake(); // Call the base class Awake method
         stateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
@@ -57,16 +55,17 @@ public class Player : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    protected override void Start()
     {
-        anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        base.Start(); // Call the base class Start method
+
         stateMachine.Initialize(idleState); // Initialize the state machine with the idle state
     }
 
     // Update is called once per frame
-    private void Update()
+    protected override void Update()
     {
+        base.Update(); // Call the base class Update method
         stateMachine.currentState.Update();
 
         CheckForDashInput();
@@ -102,14 +101,5 @@ public class Player : MonoBehaviour
         }
     }
 
-    #region Velocity
-    public void ZeroVelocity()
-    {
-        rb.linearVelocity = Vector2.zero; // Set the player's velocity to zero
-    }
-    public void SetVelocity(float _xVelocity, float _yVelocity)
-    {
-        rb.linearVelocity = new Vector2(_xVelocity, _yVelocity);
-    }
-    #endregion
+    
 }

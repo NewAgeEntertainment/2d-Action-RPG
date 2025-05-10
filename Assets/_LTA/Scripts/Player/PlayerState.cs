@@ -5,6 +5,7 @@ public class PlayerState
     protected PlayerStateMachine stateMachine;
     protected Player player;
 
+
     protected Rigidbody2D rb;
 
     protected float xInput;
