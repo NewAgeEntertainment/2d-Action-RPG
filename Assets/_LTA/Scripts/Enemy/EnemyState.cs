@@ -11,10 +11,6 @@ public class EnemyState // base class for all enemy states
 
     private string animBoolName;
 
-    //public float xInput; // X-axis input for enemy movement
-    //public float yInput; // Y-axis input for enemy movement
-
-
     protected float stateTimer;
     protected bool triggierCalled;
 

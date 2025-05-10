@@ -17,7 +17,7 @@ public class Enemy : Entity
     private int currentPatrolIndex; // Index of the current patrol point  
 
     public EnemyStateMachine stateMachine { get; private set; } // State machine for enemy AI  
-
+    
     public Vector2 currentDirection { get; private set; } // Current direction of the enemy  
 
     // Make 'target' accessible by changing its protection level to 'protected' in the base class 'Entity'.  
@@ -42,20 +42,23 @@ public class Enemy : Entity
             rb.linearVelocity = Vector2.zero;
             return; // Pause the enemy's movement if isPaused is true  
         }
-        //ChangeAnim(currentDirection); // Update the animation based on the current direction
+        
         stateMachine.currentState.Update(); // Call the Update method of the current state  
 
-        // Correcting the invalid assignment to `rb.linearVelocity`  
-        Vector2 direction = ((Vector3)target - transform.position).normalized; //
-        rb.linearVelocity = direction * moveSpeed; // Set the enemy's velocity towards the target
+        //// patrol point movement
         
+        // Correcting the invalid assignment to `rb.linearVelocity`  
+        Vector2 direction = ((Vector3)target - transform.position).normalized; // Calculate the direction to the target point
+        rb.linearVelocity = direction * moveSpeed; // Set the enemy's velocity towards the target
 
-        if (Vector2.Distance(transform.position, target) < .1f)
+        if (Vector2.Distance(transform.position, target) < .1f) // check if the enemy has reached the target point
         {
             StartCoroutine(SetPatrolPoint()); // Move to the next patrol point  
         }
+        //------End of patrol point movement------//
     }
 
+    // patrol pint setup
     IEnumerator SetPatrolPoint() // set patrol point  
     {
 
@@ -67,37 +70,6 @@ public class Enemy : Entity
         isPaused = false; // Reset the pause flag
         currentDirection = target - (Vector2)transform.position; // Calculate the direction to the target
     }
+    //----End of patrol point setup----//
 
-    //private void SetAnimFloat(Vector2 setVector)
-    //{
-    //    anim.SetFloat("xInput", setVector.x); // Set the x-axis input for animation
-    //    anim.SetFloat("yInput", setVector.y); // Set the y-axis input for animation
-    //}
-
-    //private void ChangeAnim(Vector2 currentDirection)
-    //{
-    //    if(Mathf.Abs(currentDirection.x) > Mathf.Abs(currentDirection.y))
-    //    {
-    //        if (currentDirection.x > 0)
-    //        {
-    //            SetAnimFloat(Vector2.right);
-    //        }
-    //        else
-    //        {
-    //            SetAnimFloat(Vector2.left);
-    //        }
-    //    }
-    //    else if (Mathf.Abs(currentDirection.x) < Mathf.Abs(currentDirection.y))
-    //    {
-    //        if (currentDirection.y > 0)
-    //        {
-    //            SetAnimFloat(Vector2.up);
-    //        }
-    //        else
-    //        {
-    //            SetAnimFloat(Vector2.down);
-    //        }
-    //    }
-
-    //}
 }
