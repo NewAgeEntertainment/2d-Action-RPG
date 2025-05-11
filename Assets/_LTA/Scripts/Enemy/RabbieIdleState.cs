@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class RabbieIdleState : EnemyState
+public class RabbieIdleState : RabbiePatrollingState
 {
-    Enemy_Rabbie enemy;
-    public RabbieIdleState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName)
+    public RabbieIdleState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName, _enemy)
     {
-        enemy = _enemy;
     }
 
     public override void Enter()

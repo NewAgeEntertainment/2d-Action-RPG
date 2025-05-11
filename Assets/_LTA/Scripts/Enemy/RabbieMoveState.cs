@@ -3,16 +3,10 @@ using UnityEngine;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.Windows;
 
-public class RabbieMoveState : EnemyState
+public class RabbieMoveState : RabbiePatrollingState
 {
-    private Enemy_Rabbie enemy;
-    //private float xInput; // Declare xInput variable  
-    //private float yInput; //  
-    //private Vector2 direction; // Declare direction variable  
-
-    public RabbieMoveState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName)
+    public RabbieMoveState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName, _enemy)
     {
-        this.enemy = _enemy;
     }
 
     public override void Enter()
@@ -38,6 +32,9 @@ public class RabbieMoveState : EnemyState
         {
            stateMachine.ChangeState(enemy.idleState); // Change to idle state if the enemy is paused        
         }
+
+        
+        
 
     }
 }
