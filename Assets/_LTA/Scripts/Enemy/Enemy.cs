@@ -6,11 +6,10 @@ using UnityEngine;
 public class Enemy : Entity
 {
     public Vector2[] patrolPoints; // Array of patrol points for the enemy to move between
-    [SerializeField] protected Transform playerCheck; // Transform for checking the player's position
-    [SerializeField] protected float playerCheckradius; // Radius for checking the player's position
-    [SerializeField] protected LayerMask WhatIsPlayer;
-
-    public bool isplayerPatrolling; // Flag to check if the enemy is patrolling the player
+    //[SerializeField] protected Transform playerCheck; // Transform for checking the player's position
+    //[SerializeField] protected float playerCheckradius; // Radius for checking the player's position
+    
+    
 
 
     [Header("Move Info")]
@@ -61,16 +60,13 @@ public class Enemy : Entity
             // Implement chasing logic here if needed
             Vector2 facing = (player.position - transform.position).normalized; // Calculate the direction to the player
             rb.linearVelocity = facing * moveSpeed; // Set the enemy's velocity towards the player
-            isplayerPatrolling = true; // Set the player patrolling flag to true
+          
         }
 
 
         stateMachine.currentState.Update(); // Call the Update method of the current state  
 
         ////// patrol point movement
-
-        
-        
         Vector2 direction = ((Vector3)target - transform.position).normalized; // Calculate the direction to the target point
         rb.linearVelocity = direction * moveSpeed; // Set the enemy's velocity towards the target
 

@@ -12,11 +12,15 @@ public class RabbiePatrollingState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        
+
     }
 
     public override void Exit()
     {
         base.Exit();
+        
+
     }
 
     public override void Update()
@@ -25,8 +29,9 @@ public class RabbiePatrollingState : EnemyState
 
         if (enemy.isChasing == true)
         {
-            enemy.StopCoroutine(enemy.SetPatrolPoint()); // Fix: Call the method to get the IEnumerator instance  
-            stateMachine.ChangeState(enemy.battlerState); // Change to battler state if the enemy is chasing  
+
+            stateMachine.ChangeState(enemy.battlerState); // Change to battler state if the enemy is chasing
         }
+
     }
 }
