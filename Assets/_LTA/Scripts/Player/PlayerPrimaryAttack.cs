@@ -63,7 +63,7 @@ public class PlayerPrimaryAttack : PlayerState
         //player.anim.SetFloat("yInput", attackDiry); // Set the y input in the animator
 
         if (stateTimer < 0)
-            player.ZeroVelocity(); // Stop the player's movement when the state timer is less than 0
+            player.SetZeroVelocity(); // Stop the player's movement when the state timer is less than 0
 
         if (triggerCalled)
             stateMachine.ChangeState(player.idleState);

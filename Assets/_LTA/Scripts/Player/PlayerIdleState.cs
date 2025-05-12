@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
 
-        player.ZeroVelocity();
+        player.SetZeroVelocity();
         player.anim.SetFloat("xInput", player.playerCurrentDirection.x);
         player.anim.SetFloat("yInput", player.playerCurrentDirection.y);
     }

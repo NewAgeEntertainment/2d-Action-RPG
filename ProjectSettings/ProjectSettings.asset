@@ -687,8 +687,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Lioncard's Tricking Adventures new start
-  metroPackageVersion: 
+  metroPackageName: LioncardsTrickingAdventuresnewstart
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -696,7 +696,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Lioncard's Tricking Adventures new start
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Lioncard's Tricking Adventures new start
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour
     }
 
 
-    public void ZeroVelocity()
+    public void SetZeroVelocity()
     {
         rb.linearVelocity = Vector2.zero; // Set the player's velocity to zero
     }

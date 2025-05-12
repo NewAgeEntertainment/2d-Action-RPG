@@ -27,11 +27,8 @@ public class RabbiePatrollingState : EnemyState
     {
         base.Update();
 
-        if (enemy.isChasing == true)
-        {
 
-            stateMachine.ChangeState(enemy.battlerState); // Change to battler state if the enemy is chasing
-        }
+        
 
     }
 }

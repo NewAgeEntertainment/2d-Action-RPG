@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.Windows;
 
-public class RabbieMoveState : RabbiePatrollingState
+public class RabbieMoveState : RabbieGroundedState
 {
     public RabbieMoveState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName, _enemy)
     {

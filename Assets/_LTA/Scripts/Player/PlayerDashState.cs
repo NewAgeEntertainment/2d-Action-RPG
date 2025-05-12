@@ -23,7 +23,7 @@ public class PlayerDashState : PlayerState
     {
         base.Exit();
 
-        player.ZeroVelocity();
+        player.SetZeroVelocity();
     }
 
     public override void Update()

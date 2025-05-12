@@ -130,7 +130,8 @@ GameObject:
   - component: {fileID: 333625436}
   - component: {fileID: 333625438}
   - component: {fileID: 333625437}
-  m_Layer: 6
+  - component: {fileID: 333625439}
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,6 +230,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &333625439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333625435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf43d680e9a29e4abc35ebdfd6015e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &406518372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406518373}
+  m_Layer: 7
+  m_Name: PlayerCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406518373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406518372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3057148860486168350}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +506,7 @@ GameObject:
   - component: {fileID: 2036474638}
   - component: {fileID: 2036474639}
   - component: {fileID: 2036474640}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -583,7 +627,7 @@ GameObject:
   - component: {fileID: 2056656495}
   - component: {fileID: 2056656494}
   - component: {fileID: 2056656496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,6 +738,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6280d127935e2874d8bc6f6b5d9969e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2142843306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142843307}
+  m_Layer: 0
+  m_Name: attackcheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2142843307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142843306}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3057148860486168350}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1219447854678062995
 Rigidbody2D:
   serializedVersion: 5
@@ -733,7 +808,7 @@ GameObject:
   - component: {fileID: 3973699918343594705}
   - component: {fileID: 1219447854678062995}
   - component: {fileID: 3973699918343594706}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Rabbies
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -749,11 +824,13 @@ Transform:
   m_GameObject: {fileID: 1931635271209096482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.87, y: 0.15, z: 0}
+  m_LocalPosition: {x: 5.714, y: 0.141, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 333625436}
+  - {fileID: 406518373}
+  - {fileID: 2142843307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &3973699918343594705
@@ -790,8 +867,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.005774975, y: 0.18619987}
-  m_Radius: 4.4
+  m_Offset: {x: 0, y: 0.15}
+  m_Radius: 0.45
 --- !u!114 &3973699918343594706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,12 +885,18 @@ MonoBehaviour:
   - {x: 3.99, y: 0}
   - {x: 7.44, y: 0}
   - {x: 7.44, y: 5}
-  playerCheck: {fileID: 2036474637}
-  playerCheckradius: 9.68
-  isplayerPatrolling: 0
+  playerCheck: {fileID: 406518373}
+  playerCheckradius: 0.01
+  range: 2.97
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
   moveSpeed: 3
   idleTime: 1
   pauseDuration: 1
+  attackDistance: 1.31
+  attackCooldown: 0.4
+  lastTimeAttacked: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -74,11 +74,11 @@ public class Player : Entity
     public IEnumerator BusyFor(float _seconds)
     {
         isBusy = true; // Set the isBusy flag to true
-        Debug.Log("IS BUSY");
+        
 
         yield return new WaitForSeconds(_seconds); // Wait for the specified number of seconds
 
-        Debug.Log("NOT BUSY");
+        
         isBusy = false; // Set the isBusy flag to false
     }
 

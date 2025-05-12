@@ -12,6 +12,9 @@ public class RabbieGroundedState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        //enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
+        //enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
     }
 
     public override void Exit()
@@ -23,9 +26,12 @@ public class RabbieGroundedState : EnemyState
     {
         base.Update();
 
-        
+        if (enemy.IsPlayerDetected())
+        {
+            stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing
+        }
 
-        
+
 
 
     }

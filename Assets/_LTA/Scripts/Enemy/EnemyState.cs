@@ -31,6 +31,7 @@ public class EnemyState // base class for all enemy states
 
     public virtual void Enter()
     {
+        triggierCalled = false;
         rb = enemyBase.rb;
         enemyBase.anim.SetBool(animBoolName, true);
     }
@@ -38,5 +39,11 @@ public class EnemyState // base class for all enemy states
     public virtual void Exit()
     {
         enemyBase.anim.SetBool(animBoolName, false);
+    }
+
+
+    public virtual void AnimationFinishTrigger()
+    {
+        triggierCalled = true;
     }
 }

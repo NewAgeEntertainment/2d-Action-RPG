@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RabbieIdleState : RabbiePatrollingState
+public class RabbieIdleState : RabbieGroundedState
 {
     public RabbieIdleState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName, _enemy)
     {
