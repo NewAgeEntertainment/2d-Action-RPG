@@ -9,7 +9,7 @@ public class RabbieBattleState : EnemyState
 {
     private Transform player;
     private Enemy_Rabbie enemy;
-    private int moveDir;
+    private Vector2 moveDir;
 
     public RabbieBattleState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName)
     {
@@ -29,49 +29,45 @@ public class RabbieBattleState : EnemyState
 
 
         Collider2D detectedPlayer = enemy.IsPlayerDetected();
-        if (detectedPlayer != null)
+        if (detectedPlayer != null) // 
         {
-            float distanceToPlayer = Vector2.Distance(enemy.transform.position, detectedPlayer.transform.position);
-            if (distanceToPlayer < enemy.attackDistance)
+            stateTimer = enemy.battleTime; // Set the battle time to 1 second
+
+            float distanceToPlayer = Vector2.Distance(enemy.transform.position, detectedPlayer.transform.position); // 
+
+
+            if (distanceToPlayer < enemy.attackDistance)// 
             {
+
                 if (CanAttack())
                 {
                     stateMachine.ChangeState(enemy.attackState); // Change to attack state if within attack distance
                 }
             }
         }
+        else
+        {
+            if (stateTimer < 0)
+                stateMachine.ChangeState(enemy.patrollingState); // Change to move state if not within attack distance
+            Debug.Log("Player is out of attack range");
+        }
+        
 
-        // Determine movement direction based on player's position relative to the enemy      
-        if (player.position.x > enemy.transform.position.x)
-            moveDir = 1;
-        else if (player.position.x < enemy.transform.position.x)
-            moveDir = -1;
+        moveDir = new Vector2(player.position.x - enemy.transform.position.x, player.position.y - enemy.transform.position.y); // Calculate the enemy direction to player
 
-        if (player.position.y > enemy.transform.position.y)
-            moveDir = 1;
-        else if (player.position.y < enemy.transform.position.y)
-            moveDir = -1;
-
-
-
-
-
-
-        // Normalize the direction vector to ensure consistent speed
-        //moveDir.Normalize();
-
-        // Set the enemy's velocity towards the player      
-        enemy.SetVelocity(enemy.moveSpeed * moveDir, enemy.moveSpeed * moveDir);
+        enemy.anim.SetFloat("xInput", moveDir.x);
+        enemy.anim.SetFloat("yInput", moveDir.y);
+        
+        moveDir.Normalize();
+  
+        enemy.SetVelocity(moveDir.x * enemy.moveSpeed, moveDir.y * enemy.moveSpeed);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        if (enemy.isPlayerDetected() == false)
-        {
-            stateMachine.ChangeState(enemy.patrollingState);
-        }
+
     }
 
     private bool CanAttack()

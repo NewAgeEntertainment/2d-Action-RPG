@@ -13,8 +13,8 @@ public class RabbieGroundedState : EnemyState
     {
         base.Enter();
 
-        //enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
-        //enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
+        enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
+        enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
     }
 
     public override void Exit()
@@ -26,10 +26,15 @@ public class RabbieGroundedState : EnemyState
     {
         base.Update();
 
-        if (enemy.IsPlayerDetected())
+        if (!enemy.IsPlayerDetected())
         {
-            stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing
+            stateMachine.ChangeState(enemy.patrollingState); // Change to patrolling state if the player is not detected
         }
+
+        //if (enemy.IsPlayerDetected())
+        //{
+        //    stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing
+        //}
 
 
 

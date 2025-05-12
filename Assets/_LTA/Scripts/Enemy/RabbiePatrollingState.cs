@@ -12,8 +12,9 @@ public class RabbiePatrollingState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        
 
+
+        Debug.Log("Patrolling State");
     }
 
     public override void Exit()
@@ -26,9 +27,14 @@ public class RabbiePatrollingState : EnemyState
     public override void Update()
     {
         base.Update();
+        enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
+        enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
 
+        if (enemy.IsPlayerDetected())
+        {
+            stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing
+        }
 
-        
 
     }
 }

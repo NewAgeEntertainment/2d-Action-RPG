@@ -19,7 +19,7 @@ public class Enemy : Entity
     public float moveSpeed; // Speed of the enemy  
     public float idleTime; // Time the enemy stays idle  
     public float pauseDuration; // Duration of the pause between patrol points
-    public bool isChasing { get; private set; } // Flag to check if the enemy is chasing the player
+    public float battleTime; // Time the enemy stays in battle state
     public bool isPaused { get; private set; } // Flag to check if the enemy is patrolling
 
     [Header("Attack info")]
@@ -44,7 +44,7 @@ public class Enemy : Entity
         base.Awake();
         
         stateMachine = new EnemyStateMachine(); // Initialize enemy-specific components or properties here  
-        //StartCoroutine(SetPatrolPoint()); // Move to the next patrol point
+        StartCoroutine(SetPatrolPoint()); // Move to the next patrol point
 
     }
 
@@ -53,11 +53,11 @@ public class Enemy : Entity
     {
         base.Update();
 
-        //if (isPaused == true)
-        //{
-        //    rb.linearVelocity = Vector2.zero;
-        //    return; // Pause the enemy's movement if isPaused is true  
-        //}
+        if (isPaused == true)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return; // Pause the enemy's movement if isPaused is true  
+        }
 
         //if (isChasing == true)
         //{
@@ -69,60 +69,37 @@ public class Enemy : Entity
         stateMachine.currentState.Update(); // Call the Update method of the current state  
 
         ////// patrol point movement  
-        //Vector2 direction = ((Vector3)target - transform.position).normalized; // Calculate the direction to the target point  
-        //rb.linearVelocity = direction * moveSpeed; // Set the enemy's velocity towards the target  
+        Vector2 direction = ((Vector3)target - transform.position).normalized; // Calculate the direction to the target point  
+        rb.linearVelocity = direction * moveSpeed; // Set the enemy's velocity towards the target  
 
-        //if (Vector2.Distance(transform.position, target) < .1f) // check if the enemy has reached the target point  
-        //{
-        //    StartCoroutine(SetPatrolPoint()); // Move to the next patrol point  
-        //}
+        if (Vector2.Distance(transform.position, target) < .1f) // check if the enemy has reached the target point  
+        {
+            StartCoroutine(SetPatrolPoint()); // Move to the next patrol point  
+        }
         //------End of patrol point movement------//  
     }   
         //------End of patrol point movement------//
 
         public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationFinishTrigger method of the current state  
-        
-    
+
+
 
 
 
     //// patrol pint setup
-    //public virtual IEnumerator SetPatrolPoint() // set patrol point  
-    //{
-    //    isPaused = true; // Set the pause flag to true  
-    //    yield return new WaitForSeconds(pauseDuration); // Wait for the specified pause duration  
-    //    currentDirection = target - (Vector2)transform.position; // Calculate the direction to the target  
-    //    currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Ensure index wraps around using modulus operator  
-    //    target = patrolPoints[currentPatrolIndex]; // set the target to the next patrol point  
-    //    isPaused = false; // Set the pause flag to false  
-    //    currentDirection = target - (Vector2)transform.position; // Calculate the direction to the target  
-    //} // Closing brace added here to fix CS1513  
+    public virtual IEnumerator SetPatrolPoint() // set patrol point  
+    {
+        isPaused = true; // Set the pause flag to true  
+        yield return new WaitForSeconds(pauseDuration); // Wait for the specified pause duration  
+        currentDirection = target - (Vector2)transform.position; // Calculate the direction to the target  
+        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Ensure index wraps around using modulus operator  
+        target = patrolPoints[currentPatrolIndex]; // set the target to the next patrol point  
+        isPaused = false; // Set the pause flag to false  
+        currentDirection = target - (Vector2)transform.position; // Calculate the direction to the target  
+    } // Closing brace added here to fix CS1513  
 
-    //}
-    //protected virtual void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        if (player == null)
-    //        {
-
-        //            player = collision.transform;
-        //        }
-        //        if (isChasing == true); // Set the chasing flag to true when the player enters the trigger
-
-
-        //    }
-        //}
-
-        //protected virtual void OnTriggerExit2D(Collider2D collision)
-        //{
-        //    if (collision.gameObject.tag == "Player")
-        //    {
-        //        rb.linearVelocity = Vector2.zero; // Stop the enemy's movement when the player exits the trigger
-        //        isChasing = false; // Set the chasing flag to false when the player exits the trigger
-        //    }
-        //}
-        //----End of patrol point setup----//
+    
+    
 
     public virtual bool isPlayerDetected() => Physics2D.OverlapCircle(transform.position, range, whatIsPlayer);
 
