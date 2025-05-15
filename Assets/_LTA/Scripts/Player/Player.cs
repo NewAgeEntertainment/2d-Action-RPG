@@ -72,6 +72,16 @@ public class Player : Entity
         CheckForDashInput();
     }
 
+    public void KnockBack(Transform enemy, float knockbackForce)
+    {
+        if (isKnocked)
+        {
+            Vector2 direction = (transform.position - enemy.position).normalized; // Calculate the knockback direction based on the enemy's position
+            rb.linearVelocity = direction * knockbackForce; // Stop the player's movement when knocked back
+            return; // Exit the method if the player is knocked back
+        }
+    }
+
     public IEnumerator BusyFor(float _seconds)
     {
         isBusy = true; // Set the isBusy flag to true
@@ -91,20 +101,23 @@ public class Player : Entity
 
         Debug.Log(gameObject.name + " was damaged!");
     }
-    //public virtual void Knockback(Transform playerTransform, float knockbackForce)
-    //{
-    //    // Calculate the knockback direction based on the player's position
-    //    Vector2 knockbackDirection = (transform.position - playerTransform.position).normalized; // Normalize the direction vector
-    //    rb.linearVelocity = knockbackDirection * knockbackForce; // Apply the knockback force to the rigidbody
-    //}
-    
 
-        
-        
+    public virtual IEnumerator HitKnockBack()
+    {
+
+        isKnocked = true;
+
+        yield return new WaitForSeconds(knockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
+        isKnocked = false;
+    }
 
 
-        
-    
+
+
+
+
+
+
 
 
     public void AnimationTrigger()

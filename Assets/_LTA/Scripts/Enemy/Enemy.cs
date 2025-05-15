@@ -28,7 +28,7 @@ public class Enemy : Entity
     public float attackCooldown;
     [HideInInspector] public float lastTimeAttacked;
     public float knockbackForce; // Force applied during knockback
-
+    [SerializeField] public GameObject attackIndicator; // Reference to the attack signal GameObject
 
     private int currentPatrolIndex; // Index of the current patrol point  
 
@@ -84,6 +84,16 @@ public class Enemy : Entity
         //    StartCoroutine(SetPatrolPoint()); // Move to the next patrol point  
         //}
         //------End of patrol point movement------//  
+    }
+
+    public virtual void ShowAttackIndicator()
+    {
+        attackIndicator.SetActive(true); // Activate the attack signal
+    }
+
+    public virtual void HideAttackIndicator()
+    {
+        attackIndicator.SetActive(false); // Deactivate the attack signal
     }
 
 
