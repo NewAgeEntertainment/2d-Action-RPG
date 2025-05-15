@@ -28,10 +28,10 @@ public class RabbieStunnedState : EnemyState
 
     public override void Update()
     {
-        base.Update();
-        if (stateTimer < 0 && !enemy.IsPlayerDetected())
-        {
-            stateMachine.ChangeState(enemy.patrollingState); // Change to idle state after stun duration
-        }
+        //base.Update();
+        //if (stateTimer < 0 && !enemy.IsPlayerDetected())
+        //{
+        //    stateMachine.ChangeState(enemy.patrollingState); // Change to idle state after stun duration
+        //}
     }
 }

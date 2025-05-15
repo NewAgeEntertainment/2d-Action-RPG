@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using JetBrains.Annotations;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class Player : Entity
 
     [Header("Attack details")]
     public float[] attackMovement;
-
+    public float knockbackForce;
     public bool isBusy{ get; private set; }
 
     [Header("Move Info")]
@@ -81,6 +82,30 @@ public class Player : Entity
         
         isBusy = false; // Set the isBusy flag to false
     }
+
+    public override void Damage()
+    {
+        // Damage logic here  
+        fx.StartCoroutine("FlashFX"); // Start the flash effect coroutine from EntityFX  
+        StartCoroutine("HitKnockBack"); // Start the knockback coroutine  
+
+        Debug.Log(gameObject.name + " was damaged!");
+    }
+    //public virtual void Knockback(Transform playerTransform, float knockbackForce)
+    //{
+    //    // Calculate the knockback direction based on the player's position
+    //    Vector2 knockbackDirection = (transform.position - playerTransform.position).normalized; // Normalize the direction vector
+    //    rb.linearVelocity = knockbackDirection * knockbackForce; // Apply the knockback force to the rigidbody
+    //}
+    
+
+        
+        
+
+
+        
+    
+
 
     public void AnimationTrigger()
     {

@@ -12,9 +12,10 @@ public class Entity : MonoBehaviour
 
     [Header("KnockBack info")]
     [SerializeField] protected Vector2 knockbackDirection; // Direction of the knockback effect
-    [SerializeField] protected float KnockbackDuration;// this float variable is to swap 0.5 with your own inside the inspector // Duration of the knockback effect
+    [SerializeField] protected float knockbackDuration;// this float variable is to swap 0.5 with your own inside the inspector // Duration of the knockback effect
+
     private Transform playerTransform; // Reference to the player's transform for direction calculation
-    public bool isKnocked { get; private set; } // Flag to check if the entity is knocked back
+    public bool isKnocked; // Flag to check if the entity is knocked back
     private float knockbackForce; // Force applied during knockback
 
     private float currentDirection; 
@@ -50,38 +51,16 @@ public class Entity : MonoBehaviour
 
         Debug.Log(gameObject.name + " was damaged!");
     }
-    public virtual IEnumerator HitKnockBack()
-    {
-        
-        isKnocked = true;
-        // Fixing the error by correctly accessing the x and y components of the Vector2
-        
-        rb.linearVelocity = new Vector2(knockbackDirection.x * transform.position.x, knockbackDirection.y * transform.position.y); // Apply knockback force in the specified direction
+    //public virtual IEnumerator HitKnockBack()
+    //{
 
-        //rb.linearVelocity = new Vector2(playerTransform.position.x * knockbackForce, playerTransform.position.y * knockbackForce); // Apply knockback force in the direction of the player
-
-        // if (knockbackForce > playerTransform.position.x)
-        // {
-        //     currentDirection = 1; // Set the direction to right
-        // }
-        // else if (knockbackForce < transform.position.x)
-        // {
-        //     currentDirection = -1; // Set the direction to left
-        // }
-
-        // if (knockbackForce > playerTransform.position.y)
-        // {
-        //     currentDirection = 1; // Set the direction to right
-        // }
-        // else if (knockbackForce < playerTransform.position.y)
-        // {
-        //     currentDirection = -1; // Set the direction to left
-        // }
+    //    isKnocked = true;
+    
 
 
-        yield return new WaitForSeconds(KnockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
-        isKnocked = false;
-    }
+    //    yield return new WaitForSeconds(KnockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
+    //    isKnocked = false;
+    //}
 
     #region Velocity  
 
@@ -89,7 +68,7 @@ public class Entity : MonoBehaviour
     {
         if (isKnocked)
             return;// If the entity is knocked back, do not set the velocity
-        rb.linearVelocity = new Vector2(0,0); // Set the player's velocity to zero  
+        rb.linearVelocity = new Vector2(0,0); 
     }
 
     public void SetVelocity(float _xVelocity, float _yVelocity)

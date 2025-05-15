@@ -30,9 +30,9 @@ public class RabbiePatrollingState : EnemyState
         enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
         enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
 
-        if (enemy.IsPlayerDetected())
-        {
-            stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing  
-        }
+        //if (enemy.IsPlayerDetected())
+        //{
+        //    stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing  
+        //}
     }
 }

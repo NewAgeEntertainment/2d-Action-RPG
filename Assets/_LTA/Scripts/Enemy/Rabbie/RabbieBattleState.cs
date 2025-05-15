@@ -20,6 +20,7 @@ public class RabbieBattleState : EnemyState
     {
         base.Enter();
         player = GameObject.FindGameObjectWithTag("Player").transform; // Find the player object by tag      
+        Debug.Log("Battle State entered"); // Log the state change  
     }
 
     public override void Update()
@@ -47,8 +48,8 @@ public class RabbieBattleState : EnemyState
         }
         else
         {
-            if (stateTimer < 0 || Vector2.Distance(enemy.transform.position, player.position) > 20)
-                stateMachine.ChangeState(enemy.patrollingState); // Change to move state if not within attack distance
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 7)
+                stateMachine.ChangeState(enemy.idleState); // Change to move state if not within attack distance
         }
         
 
@@ -65,7 +66,10 @@ public class RabbieBattleState : EnemyState
     public override void Exit()
     {
         base.Exit();
-
+        //if (!enemy.isPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position) > 20)
+        //{
+        //    stateMachine.ChangeState(enemy.patrollingState); // Change to move state if the player is not detected
+        //}
 
     }
 

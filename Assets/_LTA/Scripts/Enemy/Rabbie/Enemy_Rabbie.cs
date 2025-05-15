@@ -33,7 +33,7 @@ public class Enemy_Rabbie : Enemy
     protected override void Update()
     {
         base.Update();
-        stateMachine.currentState.Update();
+        
     }
 
 }

@@ -25,6 +25,8 @@ public class RabbieAttackState : EnemyState
 
         enemy.SetZeroVelocity();
 
+        
+
         if (triggierCalled)
         {
             stateMachine.ChangeState(enemy.battleState); // Change to battle state if the attack animation is finished

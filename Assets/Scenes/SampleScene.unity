@@ -298,7 +298,7 @@ Transform:
   m_GameObject: {fileID: 406518372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.05, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -764,7 +764,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDirection: {x: 0, y: 0}
-  KnockbackDuration: 0
+  knockbackDuration: 0
+  isKnocked: 0
   attackCheck:
   - {fileID: 587129292}
   - {fileID: 828460766}
@@ -775,6 +776,7 @@ MonoBehaviour:
   - 3
   - 2
   - 5
+  knockbackForce: 100
   moveSpeed: 5
   runSpeed: 3.21
   dashCoolDown: 0.6
@@ -1115,7 +1117,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.15}
+  m_Offset: {x: -0, y: 0.15}
   m_Radius: 0.45
 --- !u!114 &3973699918343594706
 MonoBehaviour:
@@ -1129,8 +1131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f841039d22f68468b0cde8d642aa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackDirection: {x: 3, y: 3}
-  KnockbackDuration: 5.5
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDuration: 5.92
+  isKnocked: 0
   attackCheck:
   - {fileID: 2142843307}
   - {fileID: 852531505}
@@ -1141,7 +1144,7 @@ MonoBehaviour:
   - {x: 3.99, y: 0}
   - {x: 7.44, y: 0}
   - {x: 7.44, y: 5}
-  range: 3.33
+  range: 3.1
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1151,10 +1154,10 @@ MonoBehaviour:
   idleTime: 1
   pauseDuration: 1
   battleTime: 3
-  attackDistance: 1.92
-  attackCooldown: 0.4
+  attackDistance: 0
+  attackCooldown: 2.43
   lastTimeAttacked: 0
-  knockbackForce: 20
+  knockbackForce: 10
 --- !u!114 &3973699918343594707
 MonoBehaviour:
   m_ObjectHideFlags: 0

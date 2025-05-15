@@ -3,10 +3,12 @@ using UnityEngine;
 public class RabbieGroundedState : EnemyState
 {
     protected Enemy_Rabbie enemy;
+    private Transform player; // Added player reference
 
     public RabbieGroundedState(Enemy _enemyBase, EnemyStateMachine _StateMachine, string _animBoolName, Enemy_Rabbie _enemy) : base(_enemyBase, _StateMachine, _animBoolName)
     {
         this.enemy = _enemy;
+        this.player = _enemy.transform.Find("Player"); // Assuming "Player" is the name of the player object in the hierarchy
     }
 
     public override void Enter()
@@ -26,18 +28,16 @@ public class RabbieGroundedState : EnemyState
     {
         base.Update();
 
-        if (!enemy.IsPlayerDetected() || enemy.isKnocked == false)
+        if (enemy.IsPlayerDetected())
         {
-            stateMachine.ChangeState(enemy.patrollingState); // Change to patrolling state if the player is not detected
+            stateMachine.ChangeState(enemy.battleState); // Change to patrolling state if the player is not detected
         }
-
-        //if (enemy.IsPlayerDetected())
-        //{
-        //    stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing
-        //}
-
-
-
-
+        else if (enemy.isKnocked)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+            
+                
+            
+        }
     }
 }
