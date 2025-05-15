@@ -54,11 +54,11 @@ public class Enemy : Entity
     {
         base.Update();
 
-        if (knockbackDuration > 0)
-            return; // If the knockback duration is greater than 0, return to prevent further updates
 
         stateMachine.currentState.Update();
 
+        if (knockbackDuration > 0)
+            return; // If the knockback duration is greater than 0, return to prevent further updates
         //if (isPaused == true)
         //{
         //    rb.linearVelocity = Vector2.zero;
@@ -87,14 +87,14 @@ public class Enemy : Entity
     }
 
 
-    public override void Damage()
-    {
-        // Damage logic here
-        fx.StartCoroutine("FlashFX"); // Start the flash effect coroutine from EntityFX
-        StartCoroutine("HitKnockBack"); // Start the knockback coroutine
+    //public override void Damage()
+    //{
+    //    // Damage logic here
+    //    fx.StartCoroutine("FlashFX"); // Start the flash effect coroutine from EntityFX
+    //    StartCoroutine("HitKnockBack"); // Start the knockback coroutine
 
-        Debug.Log(gameObject.name + " was damaged!");
-    }
+    //    Debug.Log(gameObject.name + " was damaged!");
+    //}
     public virtual void Knockback(Transform playerTransform, float knockbackForce)
     {
         // Calculate the knockback direction based on the player's position
@@ -107,8 +107,6 @@ public class Enemy : Entity
     {
 
         isKnocked = true;
-
-
 
         yield return new WaitForSeconds(knockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
         isKnocked = false;

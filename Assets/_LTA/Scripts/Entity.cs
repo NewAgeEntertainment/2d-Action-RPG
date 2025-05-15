@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     #endregion
 
     [Header("KnockBack info")]
-    [SerializeField] protected Vector2 knockbackDirection; // Direction of the knockback effect
+    
     [SerializeField] protected float knockbackDuration;// this float variable is to swap 0.5 with your own inside the inspector // Duration of the knockback effect
 
     private Transform playerTransform; // Reference to the player's transform for direction calculation
@@ -51,16 +51,7 @@ public class Entity : MonoBehaviour
 
         Debug.Log(gameObject.name + " was damaged!");
     }
-    //public virtual IEnumerator HitKnockBack()
-    //{
-
-    //    isKnocked = true;
     
-
-
-    //    yield return new WaitForSeconds(KnockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
-    //    isKnocked = false;
-    //}
 
     #region Velocity  
 

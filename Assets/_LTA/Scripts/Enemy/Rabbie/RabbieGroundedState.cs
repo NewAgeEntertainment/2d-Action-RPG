@@ -32,12 +32,12 @@ public class RabbieGroundedState : EnemyState
         {
             stateMachine.ChangeState(enemy.battleState); // Change to patrolling state if the player is not detected
         }
-        else if (enemy.isKnocked)
-        {
-            stateMachine.ChangeState(enemy.idleState);
+        //else if (enemy.isKnocked)
+        //{
+        //    stateMachine.ChangeState(enemy.idleState);
             
                 
             
-        }
+        //}
     }
 }

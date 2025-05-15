@@ -763,7 +763,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0099fb8af2cbb6b4dba31c8528ae97b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
   isKnocked: 0
   attackCheck:
@@ -776,7 +775,7 @@ MonoBehaviour:
   - 3
   - 2
   - 5
-  knockbackForce: 100
+  knockbackForce: 5
   moveSpeed: 5
   runSpeed: 3.21
   dashCoolDown: 0.6
@@ -1131,8 +1130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f841039d22f68468b0cde8d642aa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackDirection: {x: 0, y: 0}
-  knockbackDuration: 5.92
+  knockbackDuration: 2
   isKnocked: 0
   attackCheck:
   - {fileID: 2142843307}
@@ -1154,10 +1152,10 @@ MonoBehaviour:
   idleTime: 1
   pauseDuration: 1
   battleTime: 3
-  attackDistance: 0
+  attackDistance: 0.95
   attackCooldown: 2.43
   lastTimeAttacked: 0
-  knockbackForce: 10
+  knockbackForce: 15.96
 --- !u!114 &3973699918343594707
 MonoBehaviour:
   m_ObjectHideFlags: 0
