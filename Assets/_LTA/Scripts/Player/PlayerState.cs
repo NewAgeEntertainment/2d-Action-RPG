@@ -26,6 +26,7 @@ public class PlayerState
 
     public virtual void Enter()
     {
+        
         player.anim.SetBool(animeBoolName, true);
         rb = player.rb;
         triggerCalled = false; // Reset the trigger called flag

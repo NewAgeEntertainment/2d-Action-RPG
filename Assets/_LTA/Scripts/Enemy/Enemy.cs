@@ -7,12 +7,13 @@ using JetBrains.Annotations;
 public class Enemy : Entity
 {
     public Vector2[] patrolPoints; // Array of patrol points for the enemy to move between
-    [SerializeField] protected Transform playerCheck; // Transform for checking the player's position
-    [SerializeField] protected float playerCheckradius; // Radius for checking the player's position
+
     public float range; // Range for the enemy's detection of the player
     [SerializeField] protected LayerMask whatIsPlayer; // Layer mask for the player layer
 
-
+    [Header("Stunned info")]
+    public float stunDuration; // Duration of the stun effect
+    public Vector2 stunDirection;
 
     [Header("Move Info")]
 
@@ -26,7 +27,7 @@ public class Enemy : Entity
     public float attackDistance;
     public float attackCooldown;
     [HideInInspector] public float lastTimeAttacked;
-
+    public float knockbackForce; // Force applied during knockback
 
 
     private int currentPatrolIndex; // Index of the current patrol point  
@@ -59,12 +60,13 @@ public class Enemy : Entity
             return; // Pause the enemy's movement if isPaused is true  
         }
 
-        //if (isChasing == true)
-        //{
-        //    // Implement chasing logic here if needed  
-        //    Vector2 facing = (player.position - transform.position).normalized; // Calculate the direction to the player  
-        //    rb.linearVelocity = facing * moveSpeed; // Set the enemy's velocity towards the player  
-        //}
+        if (isKnocked == true)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return; // Pause the enemy's movement if isKnocked is true  
+        }
+
+
 
         stateMachine.currentState.Update(); // Call the Update method of the current state  
 
@@ -78,12 +80,12 @@ public class Enemy : Entity
         }
         //------End of patrol point movement------//  
     }   
-        //------End of patrol point movement------//
+        
 
         public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationFinishTrigger method of the current state  
 
 
-
+    
 
 
     //// patrol pint setup
@@ -109,24 +111,23 @@ public class Enemy : Entity
         return Physics2D.OverlapCircle(transform.position, range, whatIsPlayer); // Return the Collider2D detected within the radius  
     }
 
-    protected virtual void OnDrawGizmos()
+    
+
+    protected override void OnDrawGizmos()
     {
+        base.OnDrawGizmos(); // Call the base class OnDrawGizmos method  
         Gizmos.color = Color.red; // Set the color of the gizmo to red  
         Gizmos.DrawWireSphere(transform.position, range); // Draw a wire sphere at the enemy's position with the specified range  
 
         Gizmos.color = Color.yellow;
         // Fixing the problematic line by correctly calculating the attack range as a Vector3  
-        Vector3 attackRangePosition = new Vector3(transform.position .x, transform.position.y, 0); // Set the attack range position to the enemy's position
+        Vector3 attackRangePosition = new Vector3(transform.position.x, transform.position.y, 0); // Set the attack range position to the enemy's position  
         Gizmos.DrawWireSphere(attackRangePosition, attackDistance); // Draw a small sphere to represent the attack range  
     }
 
 
 
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red; // Set the color of the gizmo to red
-    //    Gizmos.DrawWireSphere(playerCheck.position, playerCheckradius); // Draw a wire sphere at the player check position with the specified radius
-    //}
+   
 
 }
