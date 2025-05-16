@@ -11,11 +11,6 @@ public class PlayerDashState : PlayerState
         base.Enter();
         stateTimer = player.dashDuration;
 
-
-
-
-
-
     }
 
 
@@ -30,12 +25,7 @@ public class PlayerDashState : PlayerState
     {
         base.Update();
 
-
-
         player.SetVelocity(player.dashSpeed * player.playerCurrentDirection.x, player.dashSpeed * player.playerCurrentDirection.y);
-
-
-
 
         if (stateTimer < 0)
             stateMachine.ChangeState(player.idleState);

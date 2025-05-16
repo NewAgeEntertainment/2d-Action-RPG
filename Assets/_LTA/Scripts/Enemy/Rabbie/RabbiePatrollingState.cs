@@ -14,14 +14,7 @@ public class RabbiePatrollingState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
-        if (enemy.isPaused == true)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return; // Pause the enemy's movement if isPaused is true  
-        }
-
-        Debug.Log("Patrolling State");
+        
     }
 
     public override void Exit()
@@ -33,8 +26,6 @@ public class RabbiePatrollingState : EnemyState
     {
         base.Update();
         
-
-
         enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
         enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
 

@@ -8,7 +8,7 @@ public class Enemy_Rabbie : Enemy
     public RabbieBattleState battleState { get; private set; }
     public RabbiePatrollingState patrollingState { get; private set; }
     public RabbieAttackState attackState { get; private set; }
-    public RabbieStunnedState stunnedState { get; private set; }
+    
     #endregion
 
     protected override void Awake()
@@ -20,7 +20,7 @@ public class Enemy_Rabbie : Enemy
         battleState = new RabbieBattleState(this, stateMachine, "Move", this);
         patrollingState = new RabbiePatrollingState(this, stateMachine, "Move", this);
         attackState = new RabbieAttackState(this, stateMachine, "Attack", this);
-        stunnedState = new RabbieStunnedState(this, stateMachine, "Stunned", this);
+        
     }
 
     protected override void Start()

@@ -20,8 +20,7 @@ public class Enemy_RabbieAnimationTrigger : MonoBehaviour
             foreach (var hit in colliders)
             {
 
-                //if (hit.GetComponent<Player>() != null)
-                //    hit.GetComponent<Player>().Damage(); // Call the Damage method of the Enemy component if it exists.
+                
                 if (hit.CompareTag("Player")) // Check if the collider has the "Enemy" tag.
                 {
                     Player player = hit.GetComponent<Player>(); // Get the Enemy component from the collider.

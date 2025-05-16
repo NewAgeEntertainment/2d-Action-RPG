@@ -10,20 +10,18 @@ public class Entity : MonoBehaviour
     public EntityFX fx { get; private set; } // Reference to the EntityFX script for visual effects
     #endregion
 
-    [Header("KnockBack info")]
-    
-    [SerializeField] protected float knockbackDuration;// this float variable is to swap 0.5 with your own inside the inspector // Duration of the knockback effect
-
-    private Transform playerTransform; // Reference to the player's transform for direction calculation
-    public bool isKnocked; // Flag to check if the entity is knocked back
-    private float knockbackForce; // Force applied during knockback
-
-    private float currentDirection; 
-
-
     [Header("Collision Check")]
     public Transform[] attackCheck; // Transform array for attack check  
     public float attackCheckRadius; // Radius for attack check  
+    
+    [Header("KnockBack info")]
+    [SerializeField] protected float knockbackDuration;// this float variable is to swap 0.5 with your own inside the inspector // Duration of the knockback effect
+    public float knockbackForce; // Force applied during knockback
+    [HideInInspector]public bool isKnocked; // Flag to check if the entity is knocked back
+
+    private float currentDirection; 
+    private Transform playerTransform; // Reference to the player's transform for direction calculation
+
 
     protected virtual void Awake()
     {

@@ -32,11 +32,6 @@ public class RabbieMoveState : RabbieGroundedState
         enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
         
 
-        //if (enemy.isPaused == true)
-        //{
-        //   stateMachine.ChangeState(enemy.idleState); // Change to idle state if the enemy is paused        
-        //}
-
         if (enemy.isKnocked == true)
         {
             stateMachine.ChangeState(enemy.idleState); // Change to knockback state if the enemy is knocked

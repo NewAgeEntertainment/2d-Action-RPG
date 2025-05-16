@@ -32,9 +32,6 @@ public class RabbieGroundedState : EnemyState
         {
             stateMachine.ChangeState(enemy.patrollingState);
         }
-        //else if (enemy.IsPlayerDetected()) // Fixed syntax error by replacing `else (condition)` with `else if (condition)`  
-        //{
-        //    stateMachine.ChangeState(enemy.battleState); // Change to battle state if the player is detected  
-        //}
+        
     }
 }

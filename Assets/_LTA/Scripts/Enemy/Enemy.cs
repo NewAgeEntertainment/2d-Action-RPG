@@ -6,39 +6,37 @@ using JetBrains.Annotations;
 
 public class Enemy : Entity
 {
-    public Vector2[] patrolPoints; // Array of patrol points for the enemy to move between
 
-    public float range; // Range for the enemy's detection of the player
-    [SerializeField] protected LayerMask whatIsPlayer; // Layer mask for the player layer
-
-    [Header("Stunned info")]
-    public float stunDuration; // Duration of the stun effect
-    public Vector2 stunDirection;
-
+    #region Move info
     [Header("Move Info")]
-
     public float moveSpeed; // Speed of the enemy  
     public float idleTime; // Time the enemy stays idle  
     public float pauseDuration; // Duration of the pause between patrol points
     public float battleTime; // Time the enemy stays in battle state
-    public bool isPaused { get; private set; } // Flag to check if the enemy is patrolling
-    public bool isPatrolling { get; private set; } // Flag to check if the enemy is patrolling
+    #endregion
+
+    #region Attack Info
     [Header("Attack info")]
     public float attackDistance;
     public float attackCooldown;
-    [HideInInspector] public float lastTimeAttacked;
-    public float knockbackForce; // Force applied during knockback
+    public float range; // Range for the enemy's detection of the player
+    [SerializeField] protected LayerMask whatIsPlayer; // Layer mask for the player layer
     [SerializeField] public GameObject attackIndicator; // Reference to the attack signal GameObject
+    [HideInInspector] public float lastTimeAttacked;
+    #endregion
 
+    #region Patrol Info
+    [Header("Patrol info")]
+    public Vector2[] patrolPoints; // Array of patrol points for the enemy to move between
     private int currentPatrolIndex; // Index of the current patrol point  
-
-    private Transform player; // Reference to the player transform
-    public EnemyStateMachine stateMachine { get; private set; } // State machine for enemy AI  
+    public bool isPaused { get; private set; } // Flag to check if the enemy is patrolling
+    #endregion
 
     public Vector2 currentDirection { get; private set; } // Current direction of the enemy  
-
-    // Make 'target' accessible by changing its protection level to 'protected' in the base class 'Entity'.  
+     
     private Vector2 target; // Target position for the enemy to move towards
+
+    public EnemyStateMachine stateMachine { get; private set; } // State machine for enemy AI  
 
     protected override void Awake()
     {
@@ -54,10 +52,7 @@ public class Enemy : Entity
     {
         base.Update();
 
-
         stateMachine.currentState.Update();
-
-        
 
         if (isPaused == true)
         {
@@ -71,8 +66,6 @@ public class Enemy : Entity
 
         }
         
-
-
         ////// patrol point movement  
         Vector2 movedirection = ((Vector3)target - transform.position).normalized; // Calculate the direction to the target point  
         rb.linearVelocity = movedirection * moveSpeed; // Set the enemy's velocity towards the target  
@@ -98,14 +91,6 @@ public class Enemy : Entity
     }
 
 
-    //public override void Damage()
-    //{
-    //    // Damage logic here
-    //    fx.StartCoroutine("FlashFX"); // Start the flash effect coroutine from EntityFX
-    //    StartCoroutine("HitKnockBack"); // Start the knockback coroutine
-
-    //    Debug.Log(gameObject.name + " was damaged!");
-    //}
     public virtual void Knockback(Transform playerTransform, float knockbackForce)
     {
         // Calculate the knockback direction based on the player's position
@@ -116,21 +101,12 @@ public class Enemy : Entity
 
     public virtual IEnumerator HitKnockBack()
     {
-
         isKnocked = true;
-
         yield return new WaitForSeconds(knockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
         isKnocked = false;
     }
 
-
-
-
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationFinishTrigger method of the current state  
-
-
-
-
 
     //// patrol pint setup
     public virtual IEnumerator SetPatrolPoint() // set patrol point  
@@ -145,18 +121,12 @@ public class Enemy : Entity
     }
     // Closing brace added here to fix CS1513  
 
-
-
-
     public virtual bool isPlayerDetected() => Physics2D.OverlapCircle(transform.position, range, whatIsPlayer);
-
 
     public virtual Collider2D IsPlayerDetected()
     {
         return Physics2D.OverlapCircle(transform.position, range, whatIsPlayer); // Return the Collider2D detected within the radius  
     }
-
-    
 
     protected override void OnDrawGizmos()
     {
@@ -167,12 +137,25 @@ public class Enemy : Entity
         Gizmos.color = Color.yellow;
         // Fixing the problematic line by correctly calculating the attack range as a Vector3  
         Vector3 attackRangePosition = new Vector3(transform.position.x, transform.position.y, 0); // Set the attack range position to the enemy's position  
-        Gizmos.DrawWireSphere(attackRangePosition, attackDistance); // Draw a small sphere to represent the attack range  
+        Gizmos.DrawWireSphere(attackRangePosition, attackDistance); // Draw a small sphere to represent the attack range
+
+        // draw a line between all the patrol points
+        for (int i = 0; i < patrolPoints.Length; i++)
+        {
+            if (i == patrolPoints.Length - 1)
+            {
+                Gizmos.DrawLine(patrolPoints[i], patrolPoints[0]); // Draw a line between the last and first patrol points
+            }
+            else
+            {
+                Gizmos.DrawLine(patrolPoints[i], patrolPoints[i + 1]); // Draw a line between consecutive patrol points
+            }
+        }
     }
 
 
 
 
-   
+
 
 }

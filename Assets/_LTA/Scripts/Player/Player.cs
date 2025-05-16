@@ -11,7 +11,6 @@ public class Player : Entity
 
     [Header("Attack details")]
     public float[] attackMovement;
-    public float knockbackForce;
     public bool isBusy{ get; private set; }
 
     [Header("Move Info")]

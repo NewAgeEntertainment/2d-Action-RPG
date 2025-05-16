@@ -66,11 +66,7 @@ public class RabbieBattleState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        //if (!enemy.isPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position) > 20)
-        //{
-        //    stateMachine.ChangeState(enemy.patrollingState); // Change to move state if the player is not detected
-        //}
-
+        
     }
 
     private bool CanAttack()
