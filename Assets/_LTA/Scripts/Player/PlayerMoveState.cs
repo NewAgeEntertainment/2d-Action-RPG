@@ -38,9 +38,6 @@ public class PlayerMoveState : PlayerGroundedState
             player.playerCurrentDirection = new Vector2(xInput, yInput);
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            stateMachine.ChangeState(player.runState);
-        }
+        
     }
 }

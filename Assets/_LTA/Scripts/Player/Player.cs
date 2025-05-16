@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using JetBrains.Annotations;
 using Unity.Burst.CompilerServices;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 
@@ -23,10 +24,19 @@ public class Player : Entity
     public float dashSpeed;
     public float dashDuration;
 
-    public float dashDirx {  get; private set; }
-    public float dashDiry { get; private set; }
-
+    [Header("Thrust info")]
+    public Transform[] thrustAttackCheck; // Transform array for attack check  
+    public float thrustAttackCheckRadius; // Radius for attack check
+    public float thrustSpeed;
+    public float thrustDuration;
+    [SerializeField]private float thrustCooldown;
+    private float thrustUsageTimer;
+    private bool shouldThrust = true;
     
+    //public float dashDirx {  get; private set; }
+    //public float dashDiry { get; private set; }
+    
+
 
     public Vector2 playerCurrentDirection;
     
@@ -36,6 +46,7 @@ public class Player : Entity
     public PlayerMoveState moveState { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerRunState runState { get; private set; }
+    public PlayerThrustState thrustState { get; private set; }
 
     public PlayerPrimaryAttack primaryAttack { get; private set; }
     #endregion
@@ -49,6 +60,7 @@ public class Player : Entity
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         runState = new PlayerRunState(this, stateMachine, "Run");
+        thrustState = new PlayerThrustState(this, stateMachine, "Thrust");
 
         primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
@@ -69,6 +81,16 @@ public class Player : Entity
         stateMachine.currentState.Update();
 
         CheckForDashInput();
+        CheckForThrustInput();
+    }
+
+    public override void Damage()
+    {
+        // Damage logic here
+        fx.StartCoroutine("FlashFX"); // Start the flash effect coroutine from EntityFX
+        StartCoroutine("HitKnockBack"); // Start the knockback coroutine
+
+        Debug.Log(gameObject.name + " was damaged!");
     }
 
     public void KnockBack(Transform enemy, float knockbackForce)
@@ -92,14 +114,7 @@ public class Player : Entity
         isBusy = false; // Set the isBusy flag to false
     }
 
-    public override void Damage()
-    {
-        // Damage logic here  
-        fx.StartCoroutine("FlashFX"); // Start the flash effect coroutine from EntityFX  
-        StartCoroutine("HitKnockBack"); // Start the knockback coroutine  
-
-        Debug.Log(gameObject.name + " was damaged!");
-    }
+    
 
     public virtual IEnumerator HitKnockBack()
     {
@@ -109,13 +124,6 @@ public class Player : Entity
         yield return new WaitForSeconds(knockbackDuration);//(0.5f) I use a variable for the duration of the knockback instead of a hardcoded value
         isKnocked = false;
     }
-
-
-
-
-
-
-
 
 
 
@@ -138,5 +146,39 @@ public class Player : Entity
         }
     }
 
-    
+    private void CheckForThrustInput()
+    {
+        thrustUsageTimer -= Time.deltaTime; // Decrease the dash usage timer by the time since the last frame  
+
+        if (Input.GetKeyDown(KeyCode.R) && thrustUsageTimer < 0) // Check if the left shift key is pressed and the dash cooldown is over  
+        {
+            
+            //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, thrustAttackCheckRadius); // Get all colliders within the attack check radius
+            GetComponent<Collider2D>().enabled = false; // Disable the collider during the thrust state
+            thrustUsageTimer = thrustCooldown; // Reset the dash usage timer to the cooldown value  
+
+            
+
+
+            stateMachine.ChangeState(thrustState); // Change to the dash state when the left shift key is pressed  
+
+        }
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        if (thrustAttackCheck != null)
+        {
+            Gizmos.color = Color.white;
+            foreach (var check in thrustAttackCheck)
+            {
+                if (check != null)
+                {
+                    Gizmos.DrawWireSphere(check.position, thrustAttackCheckRadius); // Draw a wire sphere for attack check  
+                }
+            }
+        }
+    }
+
+
 }

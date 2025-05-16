@@ -59,14 +59,13 @@ public class PlayerPrimaryAttack : PlayerState
     public override void Update()
     {
         base.Update();
-        //player.anim.SetFloat("xInput", attackDirx); // Set the x input in the animator
-        //player.anim.SetFloat("yInput", attackDiry); // Set the y input in the animator
+       
 
         if (stateTimer < 0)
             player.SetZeroVelocity(); // Stop the player's movement when the state timer is less than 0
 
         if (triggerCalled)
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(player.idleState); // 
         
         
     }

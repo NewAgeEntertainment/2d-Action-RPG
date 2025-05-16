@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerAnimationTriggers : MonoBehaviour
 {
-
-
-
     private Player player => GetComponentInParent<Player>(); // Get the Player component from the parent GameObject.  
 
     private void AnimationTrigger() // This method is called when the animation trigger is activated.  
@@ -27,7 +24,28 @@ public class PlayerAnimationTriggers : MonoBehaviour
                     Enemy enemy = hit.GetComponent<Enemy>(); // Get the Enemy component from the collider.  
                     if (enemy != null)
                     {
-                        enemy.Knockback(transform, player.knockbackForce); // Call the Knockback method of the Enemy component.
+                        enemy.Knockback(transform, player.knockbackForce); // Call the Knockback method of the Enemy component.  
+                        enemy.Damage(); // Call the Damage method of the Enemy component.  
+                    }
+                }
+            }
+        }
+    }
+
+    private void ThrustAttackTrigger()
+    {
+        foreach (Transform thrustAttackCheck in player.thrustAttackCheck) // Iterate through each Transform in the thrustAttackCheck array.  
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(thrustAttackCheck.position, player.thrustAttackCheckRadius); // Check for colliders within the attack range.  
+
+            foreach (var hit in colliders)
+            {
+                if (hit.CompareTag("Enemy")) // Check if the collider has the "Enemy" tag.  
+                {
+                    Enemy enemy = hit.GetComponent<Enemy>(); // Get the Enemy component from the collider.  
+                    if (enemy != null)
+                    {
+                        //enemy.Knockback(transform, player.knockbackForce); // Call the Knockback method of the Enemy component.  
                         enemy.Damage(); // Call the Damage method of the Enemy component.  
                     }
                 }
