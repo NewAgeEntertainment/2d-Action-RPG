@@ -34,10 +34,10 @@ public class RabbieBattleState : EnemyState
         {
             stateTimer = enemy.battleTime; // Set the battle time to 1 second
 
-            float distanceToPlayer = Vector2.Distance(enemy.transform.position, detectedPlayer.transform.position); // 
+            float moveToPlayer = Vector2.Distance(enemy.transform.position, detectedPlayer.transform.position); // 
 
 
-            if (distanceToPlayer < enemy.attackDistance)// 
+            if (moveToPlayer < enemy.attackDistance)// 
             {
 
                 if (CanAttack())
@@ -48,8 +48,8 @@ public class RabbieBattleState : EnemyState
         }
         else
         {
-            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 7)
-                stateMachine.ChangeState(enemy.idleState); // Change to move state if not within attack distance
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 7) // if
+                stateMachine.ChangeState(enemy.patrollingState); // Change to move state if not within attack distance
         }
         
 

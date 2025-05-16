@@ -1,5 +1,7 @@
+using System.IO;
 using UnityEditor.Purchasing;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class RabbiePatrollingState : EnemyState
 {
@@ -13,6 +15,12 @@ public class RabbiePatrollingState : EnemyState
     {
         base.Enter();
 
+        if (enemy.isPaused == true)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return; // Pause the enemy's movement if isPaused is true  
+        }
+
         Debug.Log("Patrolling State");
     }
 
@@ -24,15 +32,17 @@ public class RabbiePatrollingState : EnemyState
     public override void Update()
     {
         base.Update();
-
         
+
 
         enemy.anim.SetFloat("xInput", enemy.currentDirection.x);
         enemy.anim.SetFloat("yInput", enemy.currentDirection.y);
 
-        //if (enemy.IsPlayerDetected())
-        //{
-        //    stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing  
-        //}
+        if (enemy.IsPlayerDetected())
+        {
+            stateMachine.ChangeState(enemy.battleState); // Change to move state if the enemy is chasing  
+        }
     }
+
+    
 }
