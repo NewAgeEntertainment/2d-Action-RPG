@@ -70,6 +70,8 @@ public class PlayerPrimaryAttack : PlayerState
         
     }
 
+    
+
 
     //example of how to use a variable to mean something by adding = to it.
     // Vector2 attackMovement = new Vector2(player.attackMovement[comboCounter], player.attackMovement[comboCounter]); // Get the attack movement vector based on the combo counter

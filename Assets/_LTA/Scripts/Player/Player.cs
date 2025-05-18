@@ -12,6 +12,7 @@ public class Player : Entity
 
     [Header("Attack details")]
     public float[] attackMovement;
+    public float comboRestartTime = 1;
     public bool isBusy{ get; private set; }
 
     [Header("Move Info")]
@@ -127,7 +128,7 @@ public class Player : Entity
 
 
 
-    public void AnimationTrigger()
+    public void EndAnimationTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger(); // Call the AnimationTrigger method of the current state in the state machine
     } 
